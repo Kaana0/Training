@@ -1,12 +1,11 @@
 <?php
-
 // じゃんけんの配列
 $hands = ['ぐー', 'ちょき', 'ぱー'];
 
 // handが送信されたら
-if (isset($_POST['hand'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 相手の手
-    $yourHand = $_POST['hand'];
+    $yourHand = isset($_POST['hand']) ? $_POST['hand'] : '';
 
     // コンピューターの手
     $key = array_rand($hands);
@@ -26,7 +25,6 @@ if (isset($_POST['hand'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>

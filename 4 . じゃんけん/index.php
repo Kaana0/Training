@@ -8,6 +8,13 @@ if (!isset($_SESSION['winCnt'])) {
     $_SESSION['show__message'] ="";
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $yourHand = isset($_POST['hand']) ? $_post['hand'] : '';
+    $key = array_rand($hands);
+    $computerHand = $hands[$key];
+    var_dump($computerHand);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">

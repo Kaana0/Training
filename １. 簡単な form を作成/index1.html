@@ -1,33 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <form action="action.php" method="post">
-        <label for="name">名前：</label>
-        <input name="name" id="name" type="text">
-        <br>
-        <label for="age">年齢：</label>
-        <input name="age" id="age" type="number">
-        <br>
-        <button type="submit">送信</button>
+    <form action="" method="post">
+        <label>名前　　　</label>
+        <input type="text"><br>
+        <label>年齢　　　</label>
+        <input type="text"><br>
+        <label>都道府県　</label>
+        <select>
+            <option>選択して下さい</option>
+            <option>大阪</option>
+            <option>奈良</option>
+            <option>京都</option>
+        </select><br>
+        <label>内容　　　</label>
+        <textarea></textarea><br>
+        <input style="width: 250px;" type="button" value="そうしん">
     </form>
-    <input type="text" name="text" value="入力してください">
-    <form action="action.php" method="post">
-        <select name="sample">
-            <option value="sample">sample1</option>
-            <option value="sample">sample2</option>
-            <option value="sample">sample3</option>
-            <option value="sample">sample4</option>
-            <option value="sample">sample5</option>
-       </select>
-    </form>
-    <label for="story">Tell us your story</label>
-    <br>
-    <textarea id="story" name="story" rows="5" cols="20">I'm fun.....
-    </textarea>
 </body>
 </html>

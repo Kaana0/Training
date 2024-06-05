@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['show_message'] = 'ざんねん。';
             }
             //var_dump($_SESSION['show_message']);
+            //$_SESSION['winCnt'] = 0;
         } else {
             $_SESSION['show_message'] = "";
         }
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>あいて：<?php echo htmlspecialchars($computerHand, ENT_QUOTES, 'UTF-8');?></p>
         <p>けっか：<?php echo htmlspecialchars($result, ENT_QUOTES, 'UTF-8');?></p>
     <?php if ($_SESSION['show_message']) { ?>
-        <p>おめでとう！</p>
+        <p><?php echo htmlspecialchars($_SESSION['show_message'], ENT_QUOTES, 'UTF-8'); ?></p>
         <?php $_SESSION['show_message'] = "" ?>
     <?php } ?>
     <?php } ?>

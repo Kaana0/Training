@@ -37,10 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['show_message'] = 'ざんねん。';
             }
             //var_dump($_SESSION['show_message']);
-            //$_SESSION['winCnt'] = 0;
+            $_SESSION['winCnt'] = 0;
         } else {
             $_SESSION['show_message'] = "";
         }
+        //$_SESSION['winCnt'] = 0;
     } else {
         $result = '負けました。';
         $_SESSION['winCnt'] = 0;

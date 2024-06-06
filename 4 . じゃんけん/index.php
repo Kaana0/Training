@@ -12,6 +12,7 @@ if (!isset($_SESSION['winCnt'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // あなたの手
     $yourHand = isset($_POST['hand']) ? $_POST['hand'] : '';
+    $_SESSION['hand'] = $yourHand;
     //var_dump($yourHand);
     // コンピュータの手
     $key = array_rand($hands);

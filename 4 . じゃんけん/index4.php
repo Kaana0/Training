@@ -8,7 +8,7 @@ if (!isset($_SESSION['winCnt'])) {
     $_SESSION['show_message'] = "";
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $yourHand = isset($_POST['hand']) ? $_POST['hand'] : '';
     $key = array_rand($hands);
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>じゃんけんしょうぶ</h1>
-    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
+    <?php if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') { ?>
         <p>あなた：<?php echo htmlspecialchars($yourHand, ENT_QUOTES, 'UTF-8'); ?></p>
         <p>あいて：<?php echo htmlspecialchars($computerHand, ENT_QUOTES, 'UTF-8'); ?></p>
         <p>けっか：<?php echo htmlspecialchars($result, ENT_QUOTES, 'UTF-8'); ?></p>
@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php } ?>
     <?php } ?>
     <form method="post">
-        <label>ぐー<input type="radio" name="hand" value="ぐー" <?php if ($yourHand == 'ぐー') echo 'checked'; ?> required></label>
-        <label>ちょき<input type="radio" name="hand" value="ちょき" <?php if ($yourHand == 'ちょき') echo 'checked'; ?> required></label>
-        <label>ぱー<input type="radio" name="hand" value="ぱー" <?php if ($yourHand == 'ぱー') echo 'checked'; ?> required></label>
+        <label>ぐー<input type="radio" name="hand" value="ぐー" <?php if ((isset($yourHand) && $yourHand == 'ぐー')) echo 'checked'; ?> required></label>
+        <label>ちょき<input type="radio" name="hand" value="ちょき" <?php if ((isset($yourHand) && $yourHand == 'ちょき')) echo 'checked'; ?> required></label>
+        <label>ぱー<input type="radio" name="hand" value="ぱー" <?php if ((isset($yourHand) && $yourHand == 'ぱー')) echo 'checked'; ?> required></label>
         <input type="submit" value="しょうぶ！！">
     </form>
 </body>

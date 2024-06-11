@@ -14,16 +14,17 @@
         <input type="text" name="text4">
         <p></p>
         <input type="submit" name="sort_asc" value="昇順">
+        <p></p>
     </form>
     <?php
     if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sort_asc'])) {
-        $numbersAsc = [];
-        if (isset($_POST['text1'])) $numbers = array_merge($numbersAsc, array_map('intval', explode(',', $_POST['text1'])));
-        if (isset($_POST['text2'])) $numbers = array_merge($numbersAsc, array_map('intval', explode(',', $_POST['text2'])));
-        if (isset($_POST['text3'])) $numbers = array_merge($numbersAsc, array_map('intval', explode(',', $_POST['text3'])));
-        if (isset($_POST['text4'])) $numbers = array_merge($numbersAsc, array_map('intval', explode(',', $_POST['text4'])));
-        $sortedNumbersAsc = quickSort($numbersAsc);
-        echo "<p>昇順：" . implode(',', $sortedNumbersAsc) . "</p>";
+        $numbers = [];
+        if (isset($_POST['text1'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text1'])));
+        if (isset($_POST['text2'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text2'])));
+        if (isset($_POST['text3'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text3'])));
+        if (isset($_POST['text4'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text4'])));
+        $sortedNumbers = quickSort($numbers);
+        echo "<p>昇順：" . implode(',', $sortedNumbers) . "</p>";
     }
     ?>
     <form method="post">
@@ -36,14 +37,13 @@
     </form>
     <?php
     if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sort_desc'])) {
-        $numbersDesc = [];
-        if (isset($_POST['text1'])) $numbers = array_merge($numbersDesc, array_map('intval', explode(',', $_POST['text1'])));
-        if (isset($_POST['text2'])) $numbers = array_merge($numbersDesc, array_map('intval', explode(',', $_POST['text2'])));
-        if (isset($_POST['text3'])) $numbers = array_merge($numbersDesc, array_map('intval', explode(',', $_POST['text3'])));
-        if (isset($_POST['text4'])) $numbers = array_merge($numbersDesc, array_map('intval', explode(',', $_POST['text4'])));
-        $sortedNumbersDesc = quickSort($numbersDesc);
-        $sortedNumbersDesc = array_reverse($sortedNumbersDesc);
-        echo "<p>降順：" . implode(',', $sortedNumbersDesc) . "</p>";
+        $numbers = [];
+        if (isset($_POST['text1'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text1'])));
+        if (isset($_POST['text2'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text2'])));
+        if (isset($_POST['text3'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text3'])));
+        if (isset($_POST['text4'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text4'])));
+        rsort($numbers);
+        echo "<p>降順：" . implode(',', $numbers) . "</p>";
     }
     ?>    
     <?php

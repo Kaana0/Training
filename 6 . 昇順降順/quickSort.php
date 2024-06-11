@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>昇順降順</title>
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <h1>クイックソートで並び替え</h1>
@@ -36,19 +42,41 @@
         return array_merge(quickSort($left), array($pivot_key => $pivot), quickSort($right));
     }
 
+    $error = false;
+    $errorMessage = "";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $numbers = [];
-        if (isset($_POST['text1'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text1'])));
-        if (isset($_POST['text2'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text2'])));
-        if (isset($_POST['text3'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text3'])));
-        if (isset($_POST['text4'])) $numbers = array_merge($numbers, array_map('intval', explode(',', $_POST['text4'])));
+        $inputs = ['text1', 'text2', 'text3', 'text4'];
+        
+        foreach ($inputs as $input) {
+            if (isset($_POST[$input]) && $_POST[$input] !== '') {
+                $values = explode(',', $_POST[$input]);
+                foreach ($values as $value) {
+                    if (!is_numeric($value)) {
+                        $error = true;
+                        $errorMessage = "すべて数値で入力して下さい！";
+                        break 2;
+                    } else {
+                        $numbers[] = intval($value);
+                    }
+                }
+            } else {
+                $error = true;
+                $errorMessage = "すべての入力値を入力して下さい！";
+                break;
+            }
+        }
 
-        if (isset($_POST['sort_asc'])) {
-            $sortedNumbers = quickSort($numbers);
-            echo "<p>昇順：" . implode(',', $sortedNumbers) . "</p>";
-        } elseif (isset($_POST['sort_desc'])) {
-            rsort($numbers);
-            echo "<p>降順：" . implode(',', $numbers) . "</p>";
+        if ($error) {
+            echo "<p class='error'>{$errorMessage}</p>";
+        } else {
+            if (isset($_POST['sort_asc'])) {
+                $sortedNumbers = quickSort($numbers);
+                echo "<p>昇順：" . implode(',', $sortedNumbers) . "</p>";
+            } elseif (isset($_POST['sort_desc'])) {
+                rsort($numbers);
+                echo "<p>降順：" . implode(',', $numbers) . "</p>";
+            }
         }
     }
     ?>

@@ -14,9 +14,9 @@
 <body>
     <h1>クイックソートで並び替え</h1>
     <form method="post">
-        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : ''; ?>">
-        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : ''; ?>">
-        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : ''; ?>">
+        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : ''; ?>"><?php if ($_POST[$error]) { echo "<p class='error'>{$errorMessage}</p>";} ?><br>
+        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : ''; ?>"><br>
+        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : ''; ?>"><br>
         <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : ''; ?>">
         <p></p>
         <input type="submit" name="sort_asc" value="昇順">
@@ -62,7 +62,7 @@
                 }
             } else {
                 $error = true;
-                $errorMessage = "すべての入力値を入力して下さい！";
+                $errorMessage = "入力して下さい！";
                 break;
             }
         }

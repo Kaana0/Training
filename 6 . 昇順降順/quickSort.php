@@ -12,18 +12,7 @@
     </style>
 </head>
 <body>
-    <h1>クイックソートで並び替え</h1>
-    <form method="post">
-        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : ''; ?>"><?php if ($_POST[$error]) { echo "<p class='error'>{$errorMessage}</p>";} ?><br>
-        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : ''; ?>"><br>
-        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : ''; ?>"><br>
-        <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : ''; ?>">
-        <p></p>
-        <input type="submit" name="sort_asc" value="昇順">
-        <input type="submit" name="sort_desc" value="降順">
-        <p></p>
-    </form>
-    <?php
+<?php
     function quickSort($array) {
         if (count($array) < 2) {
             return $array;
@@ -66,9 +55,28 @@
                 break;
             }
         }
-
+    }
+    ?>
+    <h1>クイックソートで並び替え</h1>
+    <form method="post">
+        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : ''; ?>">
+        <?php if ($error) { echo "{$errorMessage}";} ?><br>
+        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : ''; ?>">
+        <?php if ($error) { echo "{$errorMessage}";} ?><br>
+        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : ''; ?>">
+        <?php if ($error) { echo "{$errorMessage}";} ?><br>
+        <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : ''; ?>">
+        <?php if ($error) { echo "{$errorMessage}";}?>
+        <p></p>
+        <input type="submit" name="sort_asc" value="昇順">
+        <input type="submit" name="sort_desc" value="降順">
+        <p></p>
+    </form>
+    <?php
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($error) {
-            echo "<p class='error'>{$errorMessage}</p>";
+            //echo "<p class='error'>{$errorMessage}</p>";
         } else {
             if (isset($_POST['sort_asc'])) {
                 $sortedNumbers = quickSort($numbers);
@@ -78,7 +86,7 @@
                 echo "<p>降順：" . implode(',', $numbers) . "</p>";
             }
         }
-    }
-    ?>
+    }?>
+
 </body>
 </html>

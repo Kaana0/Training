@@ -36,14 +36,13 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $numbers = [];
         $inputs = ['text1', 'text2', 'text3', 'text4'];
-        
         foreach ($inputs as $input) {
             if (isset($_POST[$input]) && $_POST[$input] !== '') {
                 $values = explode(',', $_POST[$input]);
                 foreach ($values as $value) {
                     if (!is_numeric($value)) {
                         $error = true;
-                        $errorMessage = "すべて数値で入力して下さい！";
+                        $errorMessage = "数値で入力して下さい！";
                         break 2;
                     } else {
                         $numbers[] = intval($value);
@@ -51,7 +50,9 @@
                 }
             } else {
                 $error = true;
-                $errorMessage = "入力して下さい！";
+                if (isset($inputs[0])) {
+                    $errorMessage = "入力して下さい！";
+                }
                 break;
             }
         }
@@ -59,14 +60,10 @@
     ?>
     <h1>クイックソートで並び替え</h1>
     <form method="post">
-        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : ''; ?>">
-        <?php if ($error) { echo "{$errorMessage}";} ?><br>
-        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : ''; ?>">
-        <?php if ($error) { echo "{$errorMessage}";} ?><br>
-        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : ''; ?>">
-        <?php if ($error) { echo "{$errorMessage}";} ?><br>
-        <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : ''; ?>">
-        <?php if ($error) { echo "{$errorMessage}";}?>
+        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : ''; ?>"><?php if ($error) { echo "{$errorMessage}";} ?><br>
+        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : ''; ?>"><?php if ($error) { echo "{$errorMessage}";} ?><br>
+        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : ''; ?>"><?php if ($error) { echo "{$errorMessage}";} ?><br>
+        <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : ''; ?>"><?php if ($error) { echo "{$errorMessage}";}?>
         <p></p>
         <input type="submit" name="sort_asc" value="昇順">
         <input type="submit" name="sort_desc" value="降順">

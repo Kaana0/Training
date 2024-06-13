@@ -59,17 +59,17 @@
 
     <h1>クイックソートで並び替え</h1>
     <form method="post">
-        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text1'])) { echo "<span class='error'>{$errors['text1']}</span>"; } ?><br>
+        <?php
+        $text = ['text1', 'text2', 'text3', 'text4'];
+        foreach($text as $t) {
+            echo "<input type='text' name='{$t}' value='" . (isset($_POST[$t]) ? htmlspecialchars($_POST[$t], ENT_QUOTES) : '') . "'>";
+            if (isset($errors[$t])) {
+                echo "<span class='error'>{$errors[$t]}</span>";
+            }
+            echo "<br>";
+        }
 
-        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text2'])) { echo "<span class='error'>{$errors['text2']}</span>"; } ?><br>
-
-        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text3'])) { echo "<span class='error'>{$errors['text3']}</span>"; } ?><br>
-
-        <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text4'])) { echo "<span class='error'>{$errors['text4']}</span>"; } ?><br>
+        ?>
         <p></p>
         <input type="submit" name="sort_asc" value="昇順">
         <input type="submit" name="sort_desc" value="降順">

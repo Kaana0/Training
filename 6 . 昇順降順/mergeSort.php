@@ -82,17 +82,16 @@
 
     <h1>マージソートで並び替え</h1>
     <form method="post">
-        <input type="text" name="text1" value="<?php echo isset($_POST['text1']) ? htmlspecialchars($_POST['text1'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text1'])) { echo "<span class='error'>{$errors['text1']}</span>"; } ?><br>
-
-        <input type="text" name="text2" value="<?php echo isset($_POST['text2']) ? htmlspecialchars($_POST['text2'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text2'])) { echo "<span class='error'>{$errors['text2']}</span>"; } ?><br>
-
-        <input type="text" name="text3" value="<?php echo isset($_POST['text3']) ? htmlspecialchars($_POST['text3'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text3'])) { echo "<span class='error'>{$errors['text3']}</span>"; } ?><br>
-
-        <input type="text" name="text4" value="<?php echo isset($_POST['text4']) ? htmlspecialchars($_POST['text4'], ENT_QUOTES) : '';  ?>">
-        <?php if (isset($errors['text4'])) { echo "<span class='error'>{$errors['text4']}</span>"; } ?><br>
+        <?php
+        $texts = ['text1', 'text2', 'text3', 'text4'];
+        foreach ($texts as $text) {
+            echo "<input type='txet' name='{$text}' value='" . (isset($_POST[$text]) ? htmlspecialchars($_POST[$text], ENT_QUOTES) : '') . "' >";
+            if (isset($errors[$text])) {
+                echo "<span class='error'>{$errors[$text]}</span>";
+            }
+            echo "<br>";
+        }
+        ?>
         <p></p>
         <input type="submit" name="sort_asc" value="昇順">
         <input type="submit" name="sort_desc" value="降順">

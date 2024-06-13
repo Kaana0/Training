@@ -12,7 +12,6 @@
     </style>
 </head>
 <body>
-
 <?php
     function quickSort($array) {
         if (count($array) < 2) {

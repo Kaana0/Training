@@ -65,9 +65,9 @@ if (!empty($_POST['text1']) && !empty($_POST['text2']) && !empty($_POST['text3']
 <body>
 
     <form method="post" action="index.php">
-        <textarea name="text1" value="<?php if (isset($_POST['text1'])) echo $text1; ?>"></textarea>
-        <textarea name="text2"></textarea>
-        <textarea name="text3"></textarea><br>
+        <textarea name="text1"><?php if (isset($_POST['text1'])) echo htmlspecialchars($_POST['text1'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+        <textarea name="text2"><?php if (isset($_POST['text2'])) echo htmlspecialchars($_POST['text2'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+        <textarea name="text3"><?php if (isset($_POST['text3'])) echo htmlspecialchars($_POST['text3'], ENT_QUOTES, 'UTF-8'); ?></textarea><br>
         <input type="submit" value="送信">
     </form>
     <p>

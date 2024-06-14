@@ -4,7 +4,7 @@ if (!empty($_POST['text1']) && !empty($_POST['text2']) && !empty($_POST['text3']
     $text2 = $_POST['text2'];
     $text3 = $_POST['text3'];
 
-    $koujunn = [];
+    $koujun = [];
 
     if ($text1 > $text2) {
         if ($text1 < $text3) {
@@ -72,8 +72,10 @@ if (!empty($_POST['text1']) && !empty($_POST['text2']) && !empty($_POST['text3']
     </form>
     <p>
         <?php
-        foreach ($koujun as $k) {
-            echo $k;
+        if (!empty($koujun)) {
+            foreach ($koujun as $k) {
+                echo $k;
+            }        
         }
         ?></p>
 

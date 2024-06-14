@@ -53,10 +53,10 @@ if (!empty($_POST['text1']) && !empty($_POST['text2']) && !empty($_POST['text3']
 <body>
 
     <form method="post" action="index.php">
-        <textarea name="text1"></textarea>
-        <textarea name="text2"></textarea>
-        <textarea name="text3"></textarea>
-        <textarea name="text4"></textarea><br>
+        <textarea name="text1"><?php if (isset($_POST['text1'])) echo htmlspecialchars($_POST['text1'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+        <textarea name="text2"><?php if (isset($_POST['text2'])) echo htmlspecialchars($_POST['text2'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+        <textarea name="text3"><?php if (isset($_POST['text3'])) echo htmlspecialchars($_POST['text3'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+        <textarea name="text4"><?php if (isset($_POST['text4'])) echo htmlspecialchars($_POST['text4'], ENT_QUOTES, 'UTF-8'); ?></textarea><br>
         <input type="submit" name="desc" value="降順">
         <input type="submit" name="asc" value="昇順">
     </form>

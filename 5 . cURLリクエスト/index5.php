@@ -14,8 +14,6 @@ if (curl_error($ch)) {
     $data = json_decode($result, true);
     if ($data && isset($data['success']) && $data['success'] === true && isset($data['data'])) {
         foreach($data['data'] as $person) {
-            // var_dump($person);
-            // exit;
             echo "名前：{$person['name']}<br>";
             echo "ノート：{$person['note']}<br>";
             echo "年齢：{$person['age']}<br>";

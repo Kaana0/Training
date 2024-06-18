@@ -4,6 +4,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
     $total = '';
     $display = '';
+
     if (isset($_POST['display'])) {
         $display = $_POST['display'];
     }
@@ -16,23 +17,40 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     if (isset($_POST['clear'])) {
         $display = '';
     }
+
     if (isset($_POST['sum'])) {
-        if ($display[1] == "+") {
-            $total = (int)$display[0] + (int)$display[2];
-        } elseif ($display[1] == "-") {
-            $total = (int)$display[0] - (int)$display[2];
-        } elseif ($display[1] == "*") {
-            $total = (int)$display[0] * (int)$display[2];
-        } elseif ($display[1] == "/") {
-            $total = (int)$display[0] / (int)$display[2];
+
+        $patarn = "/[+\-\*\/]/";
+        $separateNumber = preg_split($patarn, $display);
+
+         if (strstr($display, '+')) {
+            $operator = strstr($display, '+');
+            var_dump(strstr($display, '+'));
+         } elseif (strstr($display, '-')) {
+            $operator = strstr($display, '-');
+         } elseif (strstr($display, '*')) {
+            $operator = strstr($display, '*');
+         } elseif (strstr($display, '/')) {
+            $operator = strstr($display, '/');
+         }
+
+        if ($operator[0] == "+") {
+            $total = (int)$separateNumber[0] + (int)$separateNumber[1];
+        } elseif ($operator[0] == "-") {
+            $total = (int)$separateNumber[0] - (int)$separateNumber[1];
+        } elseif ($operator[0] == "*") {
+            $total = (int)$separateNumber[0] * (int)$separateNumber[1];
+        } elseif ($operator[0] == "/") {
+            $total = (int)$separateNumber[0] / (int)$separateNumber[1];
         }
+
+        $display = '';
     }
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +66,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         }
     </style>
 </head>
-
 <body>
     <p><?php if (empty($display)) {
             echo 0;
@@ -90,5 +107,4 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     }
     ?>
 </body>
-
 </html>

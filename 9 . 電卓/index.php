@@ -25,7 +25,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
          if (strstr($display, '+')) {
             $operator = strstr($display, '+');
-            var_dump(strstr($display, '+'));
          } elseif (strstr($display, '-')) {
             $operator = strstr($display, '-');
          } elseif (strstr($display, '*')) {

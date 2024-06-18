@@ -1,7 +1,7 @@
 <?php
 session_start();
 $ramen = '';
-$prif = [];
+$prefCode = [];
 $about = '';
 $textarea = '';
 
@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['ramen'])) {
         $ramen = $_POST['ramen'];
     }
-    if (isset($_POST['prif'])) {
-        $prif = $_POST['prif'];
+    if (isset($_POST['prefCode'])) {
+        $prefCode = $_POST['prefCode'];
     }
     if (isset($_POST['about'])) {
         $about = $_POST['about'];
@@ -31,22 +31,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h3>おといあわせないよう</h3>
     <form method="post" action="index.php">
         <select name="ramen">
-            <option value="とんこつらーめん" <?php if ((isset($ramen) && $ramen == 'とんこつらーめん')) echo 'selected'; ?> required>とんこつらーめん</option>
-            <option value="しょうゆらーめん" <?php if ((isset($ramen) && $ramen == 'しょうゆらーめん')) echo 'selected'; ?> required>しょうゆらーめん</option>
-            <option value="しおらーめん" <?php if ((isset($ramen) && $ramen == 'しおらーめん')) echo 'selected'; ?> required>しおらーめん</option>
-            <option value="みそらーめん" <?php if ((isset($ramen) && $ramen == 'みそらーめん')) echo 'selected'; ?> required>みそらーめん</option>
+            <?php
+            $ramens = ['とんこつらーめん', 'しょうゆらーめん', 'しおらーめん', 'みそらーめん'];
+            foreach ($ramens as $r) {
+                echo "<option value='{$r}'<?php if ((isset($ramen) && $ramen == $r)) echo 'selected'; ?>$r</option>";
+            }
+            ?>
         </select><br>
         <p></p>
         <label>
-            <input type="checkbox" name="prif[]" value="大阪府" <?php if (in_array('大阪府', $prif)) echo 'checked'; ?>>大阪府<br>
-            <input type="checkbox" name="prif[]" value="京都" <?php if (in_array('京都', $prif)) echo 'checked'; ?>>京都<br>
-            <input type="checkbox" name="prif[]" value="愛媛" <?php if (in_array('愛媛', $prif)) echo 'checked'; ?>>愛媛<br>        
+            <?php
+            $prefecture = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'];
+            foreach ((array)$prefecture as $p) {
+                if (in_array($p, $prefCode)) {
+                    echo "<input type='checkbox' name='prefCode[]' value='{$p}' checked> $p" . "<br>";
+                } else {
+                    echo "<input type='checkbox' name='prefCode[]' value='{$p}'> $p" . "<br>";
+                }
+            }
+            ?>
         </label>
         <p></p>
         <label>
-            <input type="radio" name="about" value="材料について" <?php if ($about == '材料について') echo 'checked'; ?>>材料について<br>
-            <input type="radio" name="about" value="こだわりについて" <?php if ($about == 'こだわりについて') echo 'checked'; ?>>こだわりについて<br>
-            <input type="radio" name="about" value="美味しさの秘訣について" <?php if ($about == '美味しさの秘訣について') echo 'checked'; ?>>美味しさの秘訣について<br>        
+            <?php
+            $abouts = ['材料について', 'こだわりについて', '美味しさの秘訣について'];
+            foreach ($abouts as $a) {
+                if (isset($about) && $about == $a) {
+                    echo "<input type='radio' name='about' value='{$a}' checked> $a" . "<br>";
+                } else {
+                    echo "<input type='radio' name='about' value='{$a}'> $a" . "<br>";
+                }
+            }
+            ?>        
         </label>
         <p></p>
         <textarea name="textarea" rows="5" ><?php echo htmlspecialchars($textarea, ENT_QUOTES, 'UTF-8'); ?></textarea><br>
@@ -58,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>しゅるい：<?php echo htmlspecialchars($ramen, ENT_QUOTES, 'UTF-8'); ?></p>
         <p>都道府県：
             <?php
-                if (!empty($prif)) {
-                    echo htmlspecialchars(implode(',', $prif), ENT_QUOTES, 'UTF-8');
+                if (!empty($prefCode)) {
+                    echo htmlspecialchars(implode(',', $prefCode), ENT_QUOTES, 'UTF-8');
                 }
             ?>
         </p>

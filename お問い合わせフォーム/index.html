@@ -2,18 +2,29 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせふぉーむ</title>
 </head>
 <body>
     <h3>おといあわせないよう</h3>
-    <form method="post" action="index.php">
+    <form method="post" action="inquiry.php">
         <select name="ramen">
+            <option>とんこつらーめん</option>
+            <option>しょうゆらーめん</option>
+            <option>しおらーめん</option>
+            <option>みそらーめん</option>
         </select><br>
         <p></p>
         <label>
+            <input name="prefCode[]" value="北海道" type="checkbox">北海道<br>
+            <input name="prefCode[]" value="青森県" type="checkbox">青森県<br>
+            <input name="prefCode[]" value="岩手県" type="checkbox">岩手県<br>
         </label>
         <p></p>
-        <label>
+        <label> 
+            <input name='about' value="材料について" type="radio">材料について<br>      
+            <input name='about' value="こだわりについて" type="radio">こだわりについて<br>   
+            <input name='about' value="美味しさの秘訣について" type="radio">美味しさの秘訣について     
         </label>
         <p></p>
         <textarea name="textarea" rows="5" ></textarea><br>

@@ -3,68 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>かれんだー</title>
+    <title></title>
     <style>
         h3 {
             border-bottom: 1px solid;
         }
+
         table {
             border: 1px solid;
             width: 30rem;
             height: 30rem;
         }
+
         th {
             height: 30px;
         }
+
         tr {
             text-align: center;
             border: 1px solid;
         }
+
         .backRed {
             background-color: red;
         }
+
         .backBlue {
             background-color: blue;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .red {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h3>令和６年（今月のカレンダー）</h3>
-        <h1>2024年6月</h1>
-        <table>
-            <tr>
-                <?php
-                $week = array("日", "月", "火", "水", "木", "金", "土");
-                $startDayIndex = date('w', strtotime('20240601'));
-                for ($i = 1; $i <= 7; $i++) {
-                    if ($week[($i + $startDayIndex) % 7] == "土") {
-                        echo '<th class="backBlue">' . $week[($i + $startDayIndex) % 7] . '</th>';
-                    } elseif ($week[($i + $startDayIndex) % 7] == "日") {
-                        echo '<th class="backRed">' . $week[($i + $startDayIndex) % 7] . '</th>';
+    <table>
+        <tr>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th class="backBlue">土</th>
+            <th class="backRed">日</th>
+        </tr>
+        <?php
+        $year = date('Y');
+        $month = date('m');
+        $week = date('w', strtotime($year . '-' . $month . '-01'));
+        $monthDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        if ($week == 0) {
+            $week = 6;
+        } else {
+            $week--;
+        }
+        $count = 1;
+        for ($i = 0; $i < 6; $i++) {
+            echo '<tr>';
+            for ($a = 0; $a < 7; $a++) {
+                $weekend = (5 + $a) % 7;
+                if ($count <= $monthDays) {
+                    if ($i == 0 && $a < $week) {
+                        echo '<td></td>';
                     } else {
-                        echo '<th>' . $week[($i + $startDayIndex) % 7] . '</th>';
+                        if ($weekend == 3) {
+                            echo '<td class="blue">' . $count . '</td>';
+                        } elseif ($weekend == 4) {
+                            echo '<td class="red">' . $count . '</td>';
+                        } else {
+                            echo '<td>' . $count . '</td>';
+                        }
+                        $count++;
                     }
                 }
-                ?>
-            </tr>
-            <tr>
-                <?php
-                $month = cal_days_in_month(CAL_GREGORIAN, 6, 2024);
-                for ($i = 0; $i < $startDayIndex; $i++) {
-                    echo '<td></td>';
-                }
-                for ($day = 1; $day <= $month; $day++) {
-                    echo '<td>' . $day . '</td>';
-                    if (($day + $startDayIndex) % 7 == 0) {
-                        echo '</tr><tr>';
-                    }
-                }
-                echo '</tr>';
-                ?>
-            </tr>
-        </table>
-    </div>
+            }
+            echo '</tr>';
+        }
+        ?>
+    </table>
 </body>
-
 </html>

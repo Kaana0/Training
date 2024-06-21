@@ -35,6 +35,10 @@
     </style>
 </head>
 <body>
+    <h3><a href="">< </a><?php 
+    $year = date('Y');
+    $month = date('m');
+    echo $year . "年" . $month . "月"?><a href=""> ></a></h3>
     <table>
         <tr>
             <th>日</th>
@@ -47,10 +51,10 @@
         </tr>
         <?php
         $count = '';
-        for ($i = 1; $i <= 7; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             echo '<tr>';
-            for ($a = 1; $a < 6; $a++) {
-                echo '<td>1</td>';
+            for ($a = 0; $a < 7; $a++) {
+                echo '<td>' . $count . '</td>';
                 $count++;
             }
             echo '<tr/>';

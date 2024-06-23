@@ -35,9 +35,12 @@
     </style>
 </head>
 <body>
-    <h3><a href="">< </a><?php 
+    <h3><a href="">< </a>
+    <?php 
     $year = date('Y');
     $month = date('m');
+    $week = date('w', strtotime($year, $month));
+    $monthDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     echo $year . "年" . $month . "月"?><a href=""> ></a></h3>
     <table>
         <tr>
@@ -52,6 +55,9 @@
         <?php
         $count = '';
         for ($i = 0; $i < 6; $i++) {
+            // if ($Week) {
+
+            // }
             echo '<tr>';
             for ($a = 0; $a < 7; $a++) {
                 echo '<td>' . $count . '</td>';

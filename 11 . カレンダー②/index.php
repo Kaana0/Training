@@ -35,33 +35,51 @@
     </style>
 </head>
 <body>
+    <form method="post" action="">
+
+    </form>
     <h3><a href="">< </a>
     <?php 
     $year = date('Y');
     $month = date('m');
-    $week = date('w', strtotime($year, $month));
+    $week = date('w', strtotime($year . '-' . $month . '-01'));
     $monthDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    if ($week == 0) {
+        $week = 6;
+    } else {
+        $week--;
+    }
     echo $year . "年" . $month . "月"?><a href=""> ></a></h3>
     <table>
         <tr>
-            <th>日</th>
             <th>月</th>
             <th>火</th>
             <th>水</th>
             <th>木</th>
             <th>金</th>
-            <th>土</th>
+            <th class="backBlue">土</th>
+            <th class="backRed">日</th>
         </tr>
         <?php
-        $count = '';
+        $count = 1;
         for ($i = 0; $i < 6; $i++) {
-            // if ($Week) {
-
-            // }
             echo '<tr>';
             for ($a = 0; $a < 7; $a++) {
-                echo '<td>' . $count . '</td>';
-                $count++;
+                $weekend = (5 + $a) % 7;
+                if ($count <= $monthDays) {
+                    if ($i == 0 && $a < $week) {
+                        echo '<td></td>';
+                    } else {
+                        if ($weekend == 3) {
+                            echo '<td class="blue">' . $count . '</td>';
+                        } elseif ($weekend == 4) {
+                            echo '<td class="red">' . $count . '</td>';
+                        } else {
+                            echo '<td>' . $count . '</td>';
+                        }
+                        $count++;
+                    }
+                }
             }
             echo '<tr/>';
         }

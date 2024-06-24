@@ -60,6 +60,9 @@
 
     for ($i = 1; $i < $last_day + 1; $i++) {
         $week = date('w', mktime(0, 0, 0, $month, $i, $year));
+        if ($week == 0) {
+            $week = 7;
+        }
         if ($i == 1) {
             for ($s = 2; $s <= $week; $s++) {
                 $calender[$j]['day'] = '';

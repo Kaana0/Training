@@ -26,15 +26,15 @@
         .backBlue {
             background-color: blue;
         }
-        .blue {
-            color: blue;
-        }
-        .red {
-            color: red;
-        }
         .flex {
             display: flex;
             align-items: center;
+        }
+        td:nth-of-type(6) {
+            color: blue;
+        }
+        td:nth-of-type(7) {
+            color: red;
         }
     </style>
 </head>
@@ -82,8 +82,8 @@
     <div class="flex">
         <form method="post" action="">
             <th>
-                <button type="submit" id="prev">
-                    < <input type="hidden" name="monthPrev" value="<?php echo $month - 1; ?>">
+                <button type="submit" id="prev"><
+                        <input type="hidden" name="monthPrev" value="<?php echo $month - 1; ?>">
                         <input type="hidden" name="yearPrev" value="<?php echo $year; ?>">
                 </button>
             </th>
@@ -113,7 +113,8 @@
         </tr>
         <tr>
             <?php $cnt = 0; ?>
-            <?php foreach ($calender as $key => $value) : ?>
+            <?php foreach ($calender as $key => $value) : 
+                ?>
                 <td>
                     <p><?php $cnt++;
                         echo $value['day']; ?></p>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食い逃げ</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="js/main.js?ver=1.0.0"></script>
+</head>
+<body>
+    <p>食い逃げ！！</p>
+    <input type="button" class= "btn1" value="走る">
+    <div id="wallet"></div>
+    <script>
+        $(function(){
+            $(".btn1").on("click", function(){
+                let money = Math.floor(Math.random() * (1000 - 500 + 1)) + 500;
+                let lunchPrice = 750
+                let balance = money - lunchPrice
+                console.log(money)
+                if (balance < 0) {
+                    let success = Math.floor(Math.random() * 2);
+                    if (success == 0) {
+                        let wallet = $("#wallet").html("<p>財布の中身は" + money + "円です</p><p>ランチ代は" + lunchPrice + "円です</p><p>残金は" + money + "円です</p><p>食い逃げ成功！！</p>")
+                    } else {
+                        balance = 0
+                        let wallet = $("#wallet").html("<p>財布の中身は" + money + "円です</p><p>ランチ代は" + lunchPrice + "円です</p><p>残金は" + balance + "円です</p><p>食い逃げ失敗！！残高がなくなりました！</p>")
+                    }
+                } else {
+                    let wallet = $("#wallet").html("<p>財布の中身は" + money + "円です</p><p>ランチ代は" + lunchPrice + "円です</p><p>残金は" + balance + "円です</p><p>ごちそうさまでした！</p>")
+                }
+            });
+        });
+    </script>
+</body>
+</html>

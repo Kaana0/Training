@@ -1,3 +1,4 @@
+
 <?php
 function eatAndRun () {
     $wallet = rand(500, 1000);

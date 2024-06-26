@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電卓</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="js/main.js?ver=1.0.0"></script>
+</head>
+<body>
+    <div id="total"></div>
+    <div id="display">
+        <!-- <input type="text"> -->
+    </div>
+    <table>
+        <tr>
+            <td><input type="button" name="number" id="1" value="1"></td>
+            <td><input type="button" name="number" id="2" value="2"></td>
+            <td><input type="button" name="number" id="3" value="3"></td>
+            <td><input type="button" name="oparater" id="+" value="+"></td>
+        </tr>
+        <tr>
+            <td><input type="button" name="number" id="" value="4"></td>
+            <td><input type="button" name="number" id="" value="5"></td>
+            <td><input type="button" name="number" id="" value="6"></td>
+            <td><input type="button" name="oparater" id="" value="-"></td>
+        </tr>
+        <tr>
+            <td><input type="button" name="number" id="" value="7"></td>
+            <td><input type="button" name="number" id="" value="8"></td>
+            <td><input type="button" name="number" id="" value="9"></td>
+            <td><input type="button" name="clear" id="" value="C"></td>
+        </tr>
+        <tr>
+            <td><input type="button" name="number" id="" value="0"></td>
+            <td><input type="button" name="number" id="" value="*"></td>
+            <td><input type="button" name="number" id="" value="/"></td>
+            <td><input type="button" name="sum" id="" value="="></td>
+        </tr>
+    </table>
+    <script>
+        $(function(){
+            let total = '';
+            let display = '';
+            let numbers = [];
+            $('input[name="number"]').on("click", function(){
+                let pattern = /[+\-\*\/]/;
+                let value = $(this).val();
+                numbers.push(value);
+                sepalate = numbers.join('');
+                display = $("#display").text(sepalate)
+            }) 
+        });
+    </script>
+</body>
+</html>

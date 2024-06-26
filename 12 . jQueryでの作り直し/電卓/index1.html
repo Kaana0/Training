@@ -50,6 +50,27 @@
                 sepalate = numbers.join('');
                 display = $("#display").text(sepalate)
             }) 
+            $('input[name="oparater"]').on("click", function(){
+                let pattern = /[+\-\*\/]/;
+                let value = $(this).val();
+                numbers.push(value);
+                sepalate = numbers.join('');
+                display = $("#display").text(sepalate)
+            }) 
+            $('input[name="clear"]').on("click", function(){
+                let pattern = /[+\-\*\/]/;
+                let value = $(this).val();
+                numbers.push(value);
+                sepalate = numbers.join('');
+                display = $("#display").text(sepalate)
+            }) 
+            $('input[name="sum"]').on("click", function(){
+                let pattern = /[+\-\*\/]/;
+                let value = $(this).val();
+                numbers.push(value);
+                sepalate = numbers.join('');
+                display = $("#display").text(sepalate)
+            }) 
         });
     </script>
 </body>

@@ -7,9 +7,24 @@
     <title>カレンダー</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="js/main.js?ver=1.0.0"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/start/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+    <style>
+        td.ui-datepicker-week-end:first-child a.ui-state-default {
+            background-color: rgb(245, 174, 174);
+        }
+        td.ui-datepicker-week-end:last-child a.ui-state-default {
+            background-color: rgb(168, 207, 243);
+        }
+        th.ui-datepicker-week-end:first-child  {
+            background-color: rgb(245, 174, 174);
+        }
+        th.ui-datepicker-week-end:last-child  {
+            background-color: rgb(168, 207, 243);
+        }
+
+    </style>
 </head>
 
 <body>

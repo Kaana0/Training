@@ -39,7 +39,7 @@
         </tr>
     </table>
     <script>
-        $(function(){
+        $(function(){ 
             let total = '';
             let display = '';
             let numbers = [];
@@ -58,18 +58,12 @@
                 display = $("#display").text(sepalate)
             }) 
             $('input[name="clear"]').on("click", function(){
-                let pattern = /[+\-\*\/]/;
-                let value = $(this).val();
-                numbers.push(value);
-                sepalate = numbers.join('');
-                display = $("#display").text(sepalate)
+                numbers = [];
+                display = $("#display").text('');
             }) 
             $('input[name="sum"]').on("click", function(){
-                let pattern = /[+\-\*\/]/;
-                let value = $(this).val();
-                numbers.push(value);
-                sepalate = numbers.join('');
-                display = $("#display").text(sepalate)
+                let total = eval(sepalate)
+                display = $("#display").text(total)
             }) 
         });
     </script>

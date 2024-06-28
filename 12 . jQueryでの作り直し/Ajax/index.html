@@ -5,25 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajax</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="js/main.js?ver=1.0.0"></script>
 </head>
 <body>
     <div id="result"></div>
     <script>
-        $.ajax({
-            url: 'https://umayadia-apisample.azurewebsites.net/api/persons',
-            method: 'GET',
-            dataType: 'json',
-            data: { param1: 'value1', param2: 'value2' },
-            success: function (data) {
-                //console.log(data);
-                $.each(data, function (key, value) {
-                    let re = $("#result").html("<p>" + value.name + ":" + value.age + "</p>")
-                });
-            },
-            error: function (error) {
-                console.error(error);
-            },
+        $(document).ready(function(){
+            $.ajax({
+                url: 'https://umayadia-apisample.azurewebsites.net/api/persons',
+                method: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    let resultDiv = $("#result");
+                    $.each(response.data, function (key, value) {
+                        resultDiv.append(
+                            "<div>" +
+                            "<p><strong>なまえ：</strong>" + value.name + "</p>" +
+                            "<p><strong>のーと：</strong>" + value.note + "</p>" +
+                            "<p><strong>年齢：</strong>" + value.age + "</p>" +
+                            "<p><strong>登録日：</strong>" + value.registerDate + "</p>" +
+                            "</div>"
+                        )
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                },
+            });
         });
     </script>
 </body>

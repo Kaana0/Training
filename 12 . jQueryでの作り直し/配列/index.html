@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="js/main.js?ver=1.0.0"></script>
+</head>
+
+<body>
+    <ul>
+        <li>foo</li>
+        <li>bar</li>
+    </ul>
+    <div id="color"></div>
+    <div id="books"></div>
+
+    <script>
+        var books = ['book1', 'book2', 'book3', 'book4', 'book5'];
+
+        $.each(books, function (index, value) {
+            $("#color").html("<p>" + books + "</p>")
+        });
+
+        var booksPrice = [
+            { name: 'book1', price: 10000, theme: 'programming' },
+            { name: 'book2', price: 5000, theme: 'art' },
+            { name: 'book3', price: 7500, theme: 'science' },
+            { name: 'book4', price: 12000, theme: 'mathmatical' },
+            { name: 'book5', price: 3000, theme: 'language' }
+        ];
+        $.each(booksPrice, function (index, value) {
+            $("#books").html("<p>" + value.name + value.price + value.theme + "</p>")
+            console.log(booksPrice)
+        });
+    </script>
+</body>
+
+</html>

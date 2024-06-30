@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>連想配列の練習</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <style>
+        p {
+            margin: 0 auto;
+        }
+        div {
+            border: solid 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="show"></div>
+<script>
+    $(document).ready(function() {
+        var ramens = [
+            {
+                "prefecture": "福岡",
+                "store": "一幸舎",
+                "kinds": "とんこつ",
+                "taste": "濃厚"
+            },
+            {
+                "prefecture": "宮崎",
+                "store": "かま源",
+                "kinds": "しょうゆ",
+                "taste": "あっさり"
+            },
+            {
+                "prefecture": "静岡",
+                "store": "浜北軒",
+                "kinds": "しょうゆ",
+                "taste": "あっさり"
+            },
+            {
+                "prefecture": "千葉",
+                "store": "花月嵐",
+                "kinds": "とんこつ",
+                "taste": "濃厚"
+            },
+            {
+                "prefecture": "和歌山",
+                "store": "清乃",
+                "kinds": "ブラック",
+                "taste": "しょうゆ"
+            },
+            {
+                "prefecture": "神戸",
+                "store": "カニ蟹crabnoodle",
+                "kinds": "ぱいたん",
+                "taste": "濃厚"
+            },
+            {
+                "prefecture": "京都",
+                "store": "くじからラーメン",
+                "kinds": "しょうゆ",
+                "taste": "あっさり"
+            },
+            {
+                "prefecture": "滋賀",
+                "store": "真咲雄",
+                "kinds": "とんこつ",
+                "taste": "濃厚"
+            },
+        ];
+        var show = $("#show");
+        show.empty();
+        $.each(ramens, function(index, ramen) {
+            show.append(
+                "<div>" +
+                "<p><strong>prefecture：</strong>" + ramen.prefecture + "</P>" +
+                "<p><strong>store：</strong>" + ramen.store + "</P>" +
+                "<p><strong>kinds：</strong>" + ramen.kinds + "</P>" +
+                "<p><strong>taste：</strong>" + ramen.taste + "</P>" +
+                "</div>"
+            );
+        });
+    });
+</script>
+</body>
+</html>

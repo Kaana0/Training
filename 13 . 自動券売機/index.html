@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自動券売機</title>
+    <style>
+        .layout {
+            text-align: center;
+        }
+        .text {
+            width: 5rem;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        .button {
+            background-color: rgb(150, 208, 250);
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <h3>自動券売機</h3>
+        <p>自動券売機のさんぷるぷろぐらむです</p>
+        <form method="post" action="">
+            <select name="ramen">
+                <option value="" selected disabled>セレクトメニュー</option>
+                <option value="白湯らーめん">白湯らーめん</option>
+                <option value="家系らーめん">家系らーめん</option>
+                <option value="激辛らーめん">激辛らーめん</option>
+                <option value="次郎系らーめん">次郎系らーめん</option>
+            </select><br>
+            <p></p>
+            <p>値段を入力</p>
+            <input type="text" class="text">
+            <br>
+            <p></p>
+            <input type="submit" class="button" value="商品を購入">
+            <p>支払い合計：円</p>
+            <p>支払が成功しました</p>
+        </form>
+    </div>
+</body>
+</html>

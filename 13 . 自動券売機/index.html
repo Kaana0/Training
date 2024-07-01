@@ -24,23 +24,49 @@
     <div class="layout">
         <h3>自動券売機</h3>
         <p>自動券売機のさんぷるぷろぐらむです</p>
-        <form method="post" action="">
-            <select name="ramen">
+            <select name="ramen" id="select">
                 <option value="" selected disabled>セレクトメニュー</option>
-                <option value="白湯らーめん">白湯らーめん</option>
-                <option value="家系らーめん">家系らーめん</option>
-                <option value="激辛らーめん">激辛らーめん</option>
-                <option value="次郎系らーめん">次郎系らーめん</option>
+                <option value="" data-price="900">白湯らーめん</option>
+                <option value="" data-price="850">家系らーめん</option>
+                <option value="" data-price="1000">激辛らーめん</option>
+                <option value="" data-price="950">次郎系らーめん</option>
             </select><br>
-            <p></p>
+            <p id="ramenPrice"></p>
             <p>値段を入力</p>
-            <input type="text" class="text">
+            <input id="text" type="text" class="text">
             <br>
             <p></p>
-            <input type="submit" class="button" value="商品を購入">
-            <p>支払い合計：円</p>
-            <p>支払が成功しました</p>
-        </form>
+            <button id="btn" class="button">商品を購入</button>
+            <div id="result"></div>
     </div>
+    <script>
+        let btn = document.getElementById('btn');
+        let select = document.getElementById('select');
+        btn.addEventListener('click', () => {
+            let ramenPrice = document.getElementById('ramenPrice');
+            let num = select.selectedIndex;
+            const selectedOption = select.options[select.selectedIndex];
+            let selectItem = select.options[num].innerText;
+            let price = selectedOption.dataset.price;
+            ramenPrice.innerText = selectItem + "の値段は" + price + "円です";
+            console.log(ramenPrice);
+            let text = document.getElementById('text');
+            let textValue = text.value;
+            let total = price - textValue;
+            let resultMain = document.getElementById('result');
+            let sum = document.createElement('p');
+            sum.textContent = "支払い合計：" + total +"円";
+            resultMain.appendChild(sum);
+            let p1 = document.createElement('p');
+            p1.textContent = '購入が成功しました！';
+            let p2 = document.createElement('p');
+            p2.textContent = '支払い金額が不足しています。。。';
+            if (price > textValue) {
+                resultMain.appendChild(p1);
+            } else {
+                resultMain.appendChild(p2);
+            }
+        });
+    </script>
 </body>
 </html>

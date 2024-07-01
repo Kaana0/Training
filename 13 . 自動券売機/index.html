@@ -8,11 +8,13 @@
         .layout {
             text-align: center;
         }
+
         .text {
             width: 5rem;
             border: 1px solid gray;
             border-radius: 5px;
         }
+
         .button {
             background-color: rgb(150, 208, 250);
             border: none;
@@ -24,47 +26,64 @@
     <div class="layout">
         <h3>自動券売機</h3>
         <p>自動券売機のさんぷるぷろぐらむです</p>
-            <select name="ramen" id="select">
-                <option value="" selected disabled>セレクトメニュー</option>
-                <option value="" data-price="900">白湯らーめん</option>
-                <option value="" data-price="850">家系らーめん</option>
-                <option value="" data-price="1000">激辛らーめん</option>
-                <option value="" data-price="950">次郎系らーめん</option>
-            </select><br>
-            <p id="ramenPrice"></p>
-            <p>値段を入力</p>
-            <input id="text" type="text" class="text">
-            <br>
-            <p></p>
-            <button id="btn" class="button">商品を購入</button>
-            <div id="result"></div>
+        <select name="ramen" id="select">
+            <option value="" selected disabled>セレクトメニュー</option>
+            <option value="" data-price="900">白湯らーめん</option>
+            <option value="" data-price="850">家系らーめん</option>
+            <option value="" data-price="1000">激辛らーめん</option>
+            <option value="" data-price="950">次郎系らーめん</option>
+        </select><br>
+        <p id="ramenPrice"></p>
+        <p>値段を入力</p>
+        <input id="priceText" type="text" class="text">
+        <br>
+        <p id=""></p>
+        <button id="btn" class="button">商品を購入</button>
+        <div id="result">
+            <p id="balance"></p>
+            <p id="textContent"></p>
+        </div>
     </div>
     <script>
+        // 商品を購入ボタンのidを取得
         let btn = document.getElementById('btn');
+        // セレクトボックスのidを取得
         let select = document.getElementById('select');
+        // ボタンが押されたら下記の処理
         btn.addEventListener('click', () => {
+            // らーめんの値段を表示するためにidを取得
             let ramenPrice = document.getElementById('ramenPrice');
+            // セレクトボックスで選択されたインデックスを取得
             let num = select.selectedIndex;
+            // 選択されたオプションのhtmlを取得
             const selectedOption = select.options[select.selectedIndex];
+            // 選択されたオプションのテキストを取得
             let selectItem = select.options[num].innerText;
+            // 選択されたオプションの値段を取得
             let price = selectedOption.dataset.price;
+            // セレクトボックスで選択された商品名と値段を表示
             ramenPrice.innerText = selectItem + "の値段は" + price + "円です";
-            console.log(ramenPrice);
-            let text = document.getElementById('text');
+            // テキストエリアの商品の値段を取得する為にテキストエリアのidを取得
+            let text = document.getElementById('priceText');
+            // 合計金額を設定
             let textValue = text.value;
-            let total = price - textValue;
-            let resultMain = document.getElementById('result');
-            let sum = document.createElement('p');
-            sum.textContent = "支払い合計：" + total +"円";
-            resultMain.appendChild(sum);
-            let p1 = document.createElement('p');
-            p1.textContent = '購入が成功しました！';
-            let p2 = document.createElement('p');
-            p2.textContent = '支払い金額が不足しています。。。';
-            if (price > textValue) {
-                resultMain.appendChild(p1);
+            // 商品の値段から入力された金額を引いて、残高を設定
+            let balance = price - textValue;
+            // 支払合計金額を表示する為にidを取得
+            let totalBalance = document.getElementById('balance');
+            // 支払合計金額のテキストを追加
+            totalBalance.innerText = "支払い合計：" + textValue + "円";
+            // 支払結果の表示をするためにidを取得
+            let textContent = document.getElementById('textContent');
+            // 入力された金額が商品の値段より大きければ
+            if (price == textValue) {
+                // 支払結果のテキストを追加
+                textContent.innerText = '購入が成功しました！';
             } else {
-                resultMain.appendChild(p2);
+                // 支払結果のテキストを追加
+                textContent.innerText = '支払い金額が不足しています。。。';
+                // 残高のテキストを追加
+                textContent.innerText = balance + "円不足しています";
             }
         });
     </script>

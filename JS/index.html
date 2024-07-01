@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSfunctions</title>
+</head>
+<body>
+    <script>
+        function hello(name) {
+            return `nice to meet you, ${name}`;
+        }
+        console.log(hello('Kana'));
+
+        const morning = function(name) {
+            return `good morning, ${name}`;
+        }
+        console.log(morning('Steave'));
+
+        (function() {
+            console.log('I am an engineer');
+        })();
+
+        const evening = (name) => `hello, ${name}`;
+        console.log(evening('Alissa'));
+
+        function luxury(multiplier) {
+            return function(num) {
+                return num * multiplier;
+            };
+        }
+        const double = luxury(5);
+        console.log(double(12));
+
+        function identification(callback) {
+            setTimeout(() => {
+                callback('Docker');
+            }, 1000);
+        }
+        identification((message) => {
+            console.log(message);
+        });
+
+        function* conventionFunction() {
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+        const convention = conventionFunction();
+        console.log(convention.next().value);
+        console.log(convention.next().value);
+        console.log(convention.next().value);
+
+        function curry(fn) {
+            return function curied(...args) {
+                if (args.length >= fn.length) {
+                    return fn(...args);
+                } else {
+                    return function(...args2) {
+                        return curied(...args, ...args2);
+                    };
+                }
+            };
+        }
+        function sum(d, e, f) {
+            return d + e + f;
+        }
+        const curiedSum = curry(sum);
+        console.log(curiedSum(5)(6)(7));
+
+        async function updateData() {
+            let json = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+            let data = await json.json();
+            console.log(data);
+        }
+        updateData();
+
+        function recursion(n) {
+            if (n == 0) {
+                return 1;
+            }
+            return n * recursion(n - 1);
+        }
+        console.log(recursion(12));
+
+        function promiseData() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("get data");
+                }, 1500);
+            });
+        }
+        promiseData().then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+        async function asyncAwait() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("get data!!");
+                }, 1400);
+            });
+        }
+        async function waitData() {
+            try {
+                let wait = await asyncAwait();
+                console.log(wait);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        waitData();
+
+        async function swithUser() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({ id: 1, name: "rahhat"});
+                }, 500);
+            });
+        }
+        async function swithOrders(userId) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(["order1", "order2"]);
+                }, 500);
+            });
+        }
+        async function swithUserData() {
+            try {
+                let user = await swithUser();
+                console.log(`username: ${user.name}`);
+                let orders = await swithOrders(user.id);
+                console.log(`order: ${orders.join(",")}`);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        swithUserData();
+
+    </script>
+</body>
+</html>
